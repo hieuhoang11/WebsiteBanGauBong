@@ -1,0 +1,123 @@
+﻿@using WebsiteBanGauBong.Entities
+@using WebsiteBanGauBong.DAO
+@model Product
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.mes</h2>
+<div class="dathang">
+    <div class="div-left">
+        <img src="@Url.Content("~/Asset/images/"+Model.Images)" />
+    </div>
+    <div class="div-right">
+        <div class="product-name"><a href="#">@Model.Name</a></div>
+        <div id="dhgh">Đặt hàng giao tận nơi</div>
+        <div id="div-hr"><hr></div>
+        <div style="height: 30px;">
+            <span id="price">@ProductDAO.convertPrice(@Model.Price.ToString())<sup>đ</sup></span>
+            @if (Model.PromotionPrice > 0)
+            {
+                <span id="discount-price">@ProductDAO.giamGia(@Model.Price.ToString(), @Model.PromotionPrice.ToString())<sup>đ</sup></span>
+            }           
+        </div>
+        <div id="tietkiem">
+            @if (Model.PromotionPrice > 0)
+            {
+                <span>Tiết kiệm:</span>
+                <span id="tk-gia">@ProductDAO.TietKiem(@Model.Price.ToString(), @Model.PromotionPrice.ToString())<sup>đ</sup></span>
+                <span id="tk-phantram">-@Model.PromotionPrice%</span>
+
+            }
+        </div>
+
+        <div class="form-horizontal">
+            @using (Html.BeginForm("XacNhan", "Muahang", new { @sp = Model.ProductId }))
+            {
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        @Html.TextBox("txtSL", "1", htmlAttributes: new { @class = "form-control", @required = "true" })                        
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9">                       
+                        <span style="color:#9F9A9A;">còn</span> <span style="font-weight:bold;">@Model.Amounts</span> <span style="color:#9F9A9A;">sản phẩm</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-5">
+                        @Html.TextBox("txtTen", "", htmlAttributes: new { @placeholder = "Họ Tên", @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-5">
+                        @Html.TextBox("txtSDT", "", htmlAttributes: new { @placeholder = "Số Điện Thoại", @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <div class="col-sm-9">
+                        @Html.TextBox("txtDiaChi", "", htmlAttributes: new { @placeholder = "Địa chỉ nhận hàng", @class = "form-control", @required = "true" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        @Html.TextArea("txtYeuCau", "", htmlAttributes: new { @placeholder = "Yêu cầu thêm", @class = "form-control"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-success">Mua Hàng</button>
+                    </div>
+                </div>
+            }
+        </div>
+           @* <form class="form-horizontal" action="/action_page.php">*@
+                @*<div class="form-group">
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="email" placeholder="Họ Tên" name="email">
+                    </div>
+                </div>*@
+                @*<div class="form-group">
+
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="pwd" placeholder="Số Điện Thoại" name="pwd">
+                    </div>
+                </div>*@
+
+                @*<div class="form-group">
+
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="pwd" placeholder="Địa chỉ nhận hàng" name="pwd">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <textarea class="form-control" placeholder="Yêu cầu thêm"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-success">Mua Hàng</button>
+                    </div>
+                </div>*@
+           @* </form>*@
+
+        @*</div>*@
+        <div>Gọi hotline :<span id="goingay">01234566789</span> nếu bạn cần mua hàng gấp</div>
+        <div class="col-sm-10" id="mienphi">
+            <span>Miễn phí</span> gòi quà ,thiệp , nơ và hút chân không.
+            <br>
+            <span>Free</span> ship với đơn hàng >500k đi nội thành.
+        </div>
+        <div class="col-sm-10" id="diachi">
+            Store : abc
+        </div>
+    </div>
+</div>
+

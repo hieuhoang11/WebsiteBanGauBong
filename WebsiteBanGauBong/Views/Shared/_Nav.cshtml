@@ -1,0 +1,59 @@
+﻿@using WebsiteBanGauBong.Entities
+@using WebsiteBanGauBong.DAO
+@{    
+    List<Category> list = ViewBag.listCate;
+    ProductCategoryDAO proCateDAO = new ProductCategoryDAO();
+}
+
+<nav class="navbar " id="abc">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                @{
+                    foreach (Category item in list)
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="@Url.Action("ProductsByCate","Products",new { @cateID = @item.CategoryId})">@item.Name</a>
+                            <div class="dropdown-menu " style="width: 550px;">
+
+                                @{
+                                    List<ProductCategory> listProCate = proCateDAO.getAllProductCategoryByCate(item.CategoryId);                                                                                                          
+                                    foreach (ProductCategory proCate in listProCate)
+                                    {
+                                        <div class="col-lg-4" style="margin:3px 0;">                                                                                         
+                                            <a href="@Url.Action("ProductsByProCate","Products",new { @proCateID = @proCate.ProductCategoryId})" style="font-size:12px;">@proCate.Name</a>                                                                                                                                       
+                                        </div>                                                                                                                                                  
+                                    }
+                                }
+                            </div>
+
+                        </li>
+                    }
+                }               
+               <li>@Html.ActionLink("Khuyến Mãi", "KhuyenMai" , "Products")</li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Gấu Bông Giá Rẻ</a>
+                    <div class="dropdown-menu " style="width: 200px;">
+                        <div class="col-lg-12">
+                            <ul>
+                                <li><a href="@Url.Action("Price","Products", new { @gia = 0 , @den = 100})">GẤU BÔNG 100K</a></li>
+                                <li><a href="@Url.Action("Price","Products", new { @gia = 100 , @den = 200})">GẤU BÔNG 100K – 200K</a></li>
+                                <li><a href="@Url.Action("Price","Products", new { @gia = 200 , @den = 500})">GẤU BÔNG 200K – 500K</a></li>
+                                <li><a href="@Url.Action("Price","Products", new { @gia = 500 , @den = 1000})">GẤU BÔNG 500K – 1TR</a></li>
+                                <li><a href="@Url.Action("Price","Products", new { @gia = 1000})">GẤU BÔNG HƠN 1TR</a></li>                                
+                            </ul>
+                        </div>                       
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

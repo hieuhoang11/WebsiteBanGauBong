@@ -1,0 +1,66 @@
+﻿<!-- Slide  -->
+@using WebsiteBanGauBong.Entities
+@using WebsiteBanGauBong.DAO
+@using PagedList
+@using PagedList.Mvc
+@model PagedList<Product>
+
+@RenderPage("~/Views/Home/_SliderHome.cshtml")
+
+@{
+    <br /><br />
+    <div class="product">
+        <div class="product-title">
+            <a>@ViewBag.mes</a>
+        </div>
+        <hr>
+        @{
+
+            foreach (Product product in Model)
+            {
+                <div class="product-detail">
+                    <div class="img-product">
+                        <img src="@Url.Content("~/Asset/images/"+product.Images)" />
+                        @if (product.Amounts == 0)
+                        {
+                            <div class="hethang">HẾT HÀNG</div>
+                        }
+                    </div>
+                    <div class="product-name">
+                        <a href="@Url.Action("Details","Products",new { @proID = @product.ProductId})">@product.Name</a>
+                    </div>
+                    @{
+                        if (@product.PromotionPrice > 0)
+                        {
+                            <div class="product-price">
+                               @ProductDAO.giamGia(@product.Price.ToString(), @product.PromotionPrice.ToString())<sup style="text-decoration:underline;">đ</sup>
+                                <div class="product-less">
+                                    -@product.PromotionPrice%
+                                </div>
+                            </div>
+                            <div class="product-old-price">
+                                @ProductDAO.convertPrice(@product.Price.ToString())<sup style="text-decoration:underline;">đ</sup>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="product-price">
+                                @product.Price.000<sup style="text-decoration:underline;">đ</sup>
+                            </div>
+                            <div class="product-old-price"></div>
+                        }
+                    }
+                    <div class="btn-buy-now">
+                        <a href="@Url.Action("SanPham","MuaHang",new { @sp = @product.ProductId})">MUA NGAY</a>
+                    </div>
+                </div>
+                        }
+        }
+    </div>
+
+}
+
+<div style="clear:both;width:80%;margin:auto;text-align:right;">
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("Price", new { gia = ViewBag.gia , den = ViewBag.den, page = page }))
+</div>

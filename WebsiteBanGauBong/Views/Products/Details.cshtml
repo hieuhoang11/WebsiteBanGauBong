@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using WebsiteBanGauBong.Entities
+@using WebsiteBanGauBong.DAO
+@model Product
+<h2>@ViewBag.mes</h2>
+<div class="product">
+    <div class="col-md-1">
+        <img src="@Url.Content("~/Asset/images/"+@Model.Images)" alt="" style="width:120%;height:100px;">
+    </div>
+    <div class="col-md-5">
+        <img src="@Url.Content("~/Asset/images/"+@Model.Images)" alt="">
+    </div>
+    <div class="col-md-6">
+        <div class="product-title">
+            <a>@Model.Name</a>
+        </div>
+        <hr>
+        <div class="product-detail" style="height: auto;">
+            @{
+                if (@Model.PromotionPrice > 0)
+                {
+                    <div class="product-price">
+                        @ProductDAO.giamGia(@Model.Price.ToString(), @Model.PromotionPrice.ToString())<sup style="text-decoration:underline;">đ</sup>
+                        
+                    </div>                    
+                    <div class="product-old-price">
+                        @ProductDAO.convertPrice(@Model.Price.ToString())<sup style="text-decoration:underline;">đ</sup>
+                    </div>
+                }
+                else
+                {
+                    <div class="product-price">
+                        @ProductDAO.convertPrice(@Model.Price.ToString())<sup style="text-decoration:underline;">đ</sup>
+                    </div>                             
+                }
+            }
+            
+        </div>
+        <div style="clear: both;">
+            @Model.Detail           
+        </div>
+        <div class="btn-buy-now" style="clear: both;margin-top: 2%">
+            <input type="button" name="" value="Chat qua facebook" style="background-color:transparent;width: 49%;text-align: center;border-radius: 5px;height: 40px">
+            <a href="@Url.Action("SanPham","MuaHang",new { @sp = @Model.ProductId})">
+                <input type="button" name="" value="Mua hàng" style="background-color: #07D170;width: 50%;text-align: center;border-radius: 5px;color: #FFFFFF;height: 40px">
+            </a>
+        </div>
+        <p>Hoặc gọi hotline để đặt hàng <span style="color: #FB0E0E">0923.567.767</span></p>
+    </div>
+</div>

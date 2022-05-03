@@ -1,0 +1,83 @@
+﻿@model WebsiteBanGauBong.Entities.Product
+
+@{
+    ViewBag.Title = "ChiTiet";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ChiTiet</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <span>Chủng Loại Sản Phẩm</span>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductCategory.Name)
+        </dd>
+
+        <dt>
+           <span>Tên</span>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+           <span>Mã</span>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+
+        <dt>  
+           <span>Ảnh</span>
+        </dt>
+
+        <dd>
+            <img src="@Url.Content("~/Asset/images/"+@Model.Images)" />
+        </dd>
+
+        <dt>
+            <span>Giá</span>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            <span>Giảm Giá (%)</span>          
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PromotionPrice)
+        </dd>
+
+        <dt>
+           <span>Số Lượng</span>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amounts)
+        </dd>
+
+        <dt>
+            <span>Mô Tả</span>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Detail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.ProductId }) |
+    @Html.ActionLink("Quay lại danh sách", "Index")
+</p>

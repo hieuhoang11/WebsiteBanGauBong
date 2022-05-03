@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <link href="~/Asset/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Asset/css/bootstrap.min.css">
+    <script src="~/Asset/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Asset/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/Asset/css/default.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="~/Asset/css/nivo-slider.css" type="text/css" media="screen" />
+    <script src="~/Asset/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Asset/js/jquery.nivo.slider.js"></script>
+    <script src="~/Asset/js/jquery.nivo.slider.pack.js"></script>
+    <link href="~/Asset/css/style.css" rel="stylesheet" />
+    <link href="~/Asset/css/dathang.css" rel="stylesheet" />
+    <style>
+            /*	.sticky {
+             position: fixed;
+             top: 0;
+             width: 100%;
+             z-index: 999;
+             background-color: #36220C;
+             color: white;
+             height: 35px;
+             line-height: 35px;
+             border-radius: 0px;
+        }*/
+    </style>
+</head>
+<body>
+
+    <div class="row " style="height: auto;padding-top:25px; ">
+        <div class="col-lg-9">
+            <div class="div-logo-timkiem">
+                <div class="div-logo">
+                    <a href="@Url.Action("Index","Home")"><img src="~/Asset/images/logo.png" class="img-brand"></a>
+                </div>
+                <div class="div-timkiem">    
+                    @using (Html.BeginForm("Search","Products"))
+                    {
+                        <div class="form-inline">
+                            <div class="form-group">
+                                @Html.TextBox("txtTimKiem", "", htmlAttributes: new { @placeholder = "Nhập sản phẩm cần tìm", @class = "form-control" ,@required = "true"})                                
+                            </div>
+                            <button type="submit" class="btn btn-default">
+                                <img src="~/Asset/images/search-icon.png" class="search-icon">
+                            </button>
+                        </div>                      
+                    }
+               </div>
+            </div>
+            <div class="div-navbar ">
+                @RenderPage("_Nav.cshtml")
+                 
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div style="height: 16%;"></div>
+            <img src="~/Asset/images/tonton-bg.png" style="height: 95%;">
+        </div>
+    </div>
+
+    <hr style="border: 5px solid #36220C;margin: 0px;clear: both; margin-bottom: 10px;">
+    <!-- content -->
+        @RenderBody()    
+    <!-- <script>
+        window.onscroll = function() {myFunction()};
+
+            var navbar = document.getElementById("abc");
+            var sticky = navbar.offsetTop;
+
+            function myFunction() {
+              if (window.pageYOffset >= sticky) {
+                navbar.classList.add("sticky");
+                navbar.classList.remove("navbar");
+              } else {
+                navbar.classList.remove("sticky");
+              }
+        }
+
+    </script> -->
+    <footer>
+        <div class="col-sm-12 menu-policy" style="background-color: #F8DFB0;padding:10px">
+            <div class="container">
+                <div class="col-sm-3 col-xs-6 mailings">
+                    <div class="mailing">
+                        <div class="mailing-title">THẮC MẮC, KHIẾU NẠI</div>
+                        <div class="email">Email: admin@gaubongcaocap.com</div>
+                    </div>
+                    <div class="mailing">
+                        <div class="mailing-title">MUA HÀNG SỐ LƯỢNG</div>
+                        <div class="email">Email: admin@gaubongcaocap.com</div>
+                        <div class="email">Phone: 0967.110.738</div>
+                    </div>
+                </div>
+                <div class="col-sm-3 col-xs-6 policies">
+                    <div class="policy"><a href="http://gaubongcaocap.com/huong-dan-mua-gau-bong-online.html">Chính sách đổi trả</a></div>
+                    <div class="policy"><a href="http://gaubongcaocap.com/huong-dan-mua-gau-bong-online.html">Chính sách bảo hành</a></div>
+                    <div class="policy"><a href="http://gaubongcaocap.com/huong-dan-mua-gau-bong-online.html">Chính sách vận chuyển</a></div>
+                    <div class="policy"><a href="http://gaubongcaocap.com/huong-dan-mua-gau-bong-online.html">Phương thức thanh toán</a></div>
+                </div>
+                <div class="col-sm-3 col-xs-6 introduce">
+                    <div class="intro"><a href="http://gaubongcaocap.com/member">Tích lũy điểm mua hàng</a></div>
+                    <div class="intro"><a href="#">Giới thiệu gaubongcaocap.com</a></div>
+                    <div class="intro"><a href="#">Chính sách bảo mật</a></div>
+                    <div class="intro"><a href="#">Tuyển dụng</a></div>
+                </div>
+                <div class="col-sm-3">
+                    <a target="_blank" href="https://www.facebook.com/gaubongcaocapcom">
+                        <img src="fb.png" alt="" style="border-radius: 10px">
+                    </a>
+                    <a target="_blank" href="https://www.youtube.com/channel/UCAhEYuZI5RSqOsBbuG8QNJA">
+                        <img src="youtobe.png" alt="" style="border-radius: 10px">
+                    </a>
+                    <a target="_blank" href="#">
+                        <img src="cn.png" alt="" style="border-radius: 10px">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

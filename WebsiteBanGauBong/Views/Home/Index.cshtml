@@ -1,0 +1,64 @@
+﻿
+@using WebsiteBanGauBong.Entities
+@using WebsiteBanGauBong.DAO
+@{
+    List<Category> listCate = ViewBag.listCate;
+    ProductDAO proDAO = new ProductDAO();
+}
+@RenderPage("_SliderHome.cshtml")
+
+@{
+    foreach (Category category in listCate)
+    {
+        <br/><br/>
+        <div class="product">
+            <div class="product-title">
+                <a href="@Url.Action("ProductsByCate","Products",new { @cateID = @category.CategoryId})">@category.Name</a>
+            </div>
+            <hr>
+            @{
+                List<Product> listPro = proDAO.getProductByIDCate(10, @category.CategoryId);
+                foreach (Product product in listPro)
+                {
+                    <div class="product-detail">
+                        <div class="img-product">                           
+                            <img src="@Url.Content("~/Asset/images/"+product.Images)" />
+                            @if (product.Amounts == 0)
+                            {
+                                <div class="hethang">HẾT HÀNG</div>
+                            }
+                        </div>
+                        <div class="product-name">
+                            <a href="@Url.Action("Details","Products",new { @proID = @product.ProductId})">@product.Name</a>                         
+                        </div>
+                        @{
+                            if (@product.PromotionPrice > 0)
+                            {
+                                <div class="product-price">                               
+                                     @ProductDAO.giamGia(@product.Price.ToString(), @product.PromotionPrice.ToString())<sup style="text-decoration:underline;">đ</sup>                                                                       
+                                    <div class="product-less">
+                                        -@product.PromotionPrice%
+                                    </div>
+                                </div>
+                                
+                                <div class="product-old-price">
+                                   @ProductDAO.convertPrice(@product.Price.ToString())<sup style="text-decoration:underline;">đ</sup>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="product-price">
+                                    @ProductDAO.convertPrice(@product.Price.ToString())<sup style="text-decoration:underline;">đ</sup>                             
+                                </div>  
+                                <div class="product-old-price"></div>                          
+                            }
+                        }                                             
+                        <div class="btn-buy-now">
+                            <a href="@Url.Action("SanPham","MuaHang",new { @sp = @product.ProductId})">MUA NGAY</a>
+                        </div>
+                    </div>
+                }
+            }          
+        </div>
+    }
+}

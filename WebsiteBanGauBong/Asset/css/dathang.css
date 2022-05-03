@@ -1,0 +1,47 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+.dathang{
+	width: 70%;
+	height: auto;
+	margin: auto;
+}
+.dathang .div-left{
+	width: 45%;
+	height: 100%;
+	float: left;
+}
+.dathang .div-left img{
+	width: 90%;height: 90%;margin: auto;clear: both;
+}
+.dathang .div-right{
+	width: 55%;height: 100%;float: left;
+}
+.product-name{
+	padding:10px 0 20px 0; 
+	text-align: left;
+	height:40px;
+}
+.product-name a{
+	text-decoration: none;
+	font-size: 20px;
+	color: black;
+}
+.product-name :hover {
+	text-decoration: none;
+	color: #EF2F2F;
+}
+#dhgh{color: #B2ACB2;}
+.div-right #div-hr{width: 60%;}
+.div-right #div-hr hr{margin-top: 2px;margin-bottom: 0px;}
+.div-right #price{font-size: 27px;	color: #EB3E3E;}
+#discount-price{font-size: 17px;text-decoration: line-through;color: #9D9C9C;}
+#tietkiem{margin-top: 10px;margin-bottom: 20px;}
+#tietkiem #tk-gia{font-size: 14px;font-weight: bold;}
+#tietkiem #tk-phantram{background-color: #FA8721;border-radius: 5px;padding: 3px;}
+#goingay{color: red;clear: both;}
+#mienphi{text-align: right;margin-top: 10px;}
+#mienphi span{font-weight: bold;}
+#diachi{text-align: right;margin-top: 10px;}
+
